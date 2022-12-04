@@ -44,7 +44,7 @@ public class Day4 {
     }
 
     public static void readData() throws FileNotFoundException {
-        File file = new File("/Users/justynaziemichod/Desktop/data1.txt");
+        File file = new File("/Users/justynaziemichod/Documents/advent-of-code-2022/4/data1.txt");
         Scanner myReader = new Scanner(file);
         while (myReader.hasNextLine()) {
             data.add(myReader.nextLine());

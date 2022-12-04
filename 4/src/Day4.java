@@ -5,20 +5,15 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Day4 {
+    static List<String> data = new ArrayList<>();
 
     public static void main(String[] args) throws FileNotFoundException {
+        readData();
         System.out.println(partOne());
         System.out.println(partTwo());
     }
 
-    public static int partOne() throws FileNotFoundException {
-        List<String> data = new ArrayList<>();
-        File file = new File("/Users/justynaziemichod/Desktop/data1.txt");
-        Scanner myReader = new Scanner(file);
-        while (myReader.hasNextLine()) {
-            data.add(myReader.nextLine());
-        }
-        myReader.close();
+    public static int partOne() {
         int num = 0;
         for (String i : data) {
             String[] arr = i.split(",");
@@ -33,14 +28,7 @@ public class Day4 {
         return num;
     }
 
-    public static int partTwo() throws FileNotFoundException {
-        List<String> data = new ArrayList<>();
-        File file = new File("/Users/justynaziemichod/Desktop/data1.txt");
-        Scanner myReader = new Scanner(file);
-        while (myReader.hasNextLine()) {
-            data.add(myReader.nextLine());
-        }
-        myReader.close();
+    public static int partTwo(){
         int num = 0;
         for (String i : data) {
             String[] arr = i.split(",");
@@ -54,4 +42,14 @@ public class Day4 {
         }
         return num;
     }
+
+    public static void readData() throws FileNotFoundException {
+        File file = new File("/Users/justynaziemichod/Desktop/data1.txt");
+        Scanner myReader = new Scanner(file);
+        while (myReader.hasNextLine()) {
+            data.add(myReader.nextLine());
+        }
+        myReader.close();
+    }
+
 }

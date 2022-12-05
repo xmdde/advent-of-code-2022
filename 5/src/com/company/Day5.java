@@ -11,8 +11,10 @@ public class Day5 {
 
     public static void main(String[] args) throws FileNotFoundException {
 	    initValues();
-        readData();
-        results();
+        partOne();
+        stacks = new ArrayList<>();
+        initValues();
+        partTwo();
     }
 
     public static void initValues() {
@@ -36,7 +38,7 @@ public class Day5 {
         }
     }
 
-    public static void move(int num, int from, int to) {
+    public static void move1(int num, int from, int to) {
         from--;
         to--;
         for (int i = 0; i < num; i++) {
@@ -46,7 +48,7 @@ public class Day5 {
         }
     }
 
-    public static void readData() throws FileNotFoundException {
+    public static void partOne() throws FileNotFoundException {
         File file = new File("/Users/justynaziemichod/Documents/advent-of-code-2022/5/data.txt");
         Scanner myReader = new Scanner(file);
         while (myReader.hasNextLine()) {
@@ -54,9 +56,38 @@ public class Day5 {
             int n = Integer.parseInt(tmp.split(" ")[1]);
             int f = Integer.parseInt(tmp.split(" ")[3]);
             int t = Integer.parseInt(tmp.split(" ")[5]);
-            move(n, f, t);
+            move1(n, f, t);
         }
         myReader.close();
+        results();
+        System.out.println();
+    }
+
+    public static void move2(int num, int from, int to) {
+        from--;
+        to--;
+        Character[] arr = new Character[num];
+        for (int i = 0; i < num; i++) {
+            arr[num - 1 - i] = (Character) stacks.get(from).peek();
+            stacks.get(from).pop();
+        }
+        for (int i = 0; i < num; i++) {
+            stacks.get(to).push(arr[i]);
+        }
+    }
+
+    public static void partTwo() throws FileNotFoundException {
+        File file = new File("/Users/justynaziemichod/Documents/advent-of-code-2022/5/data.txt");
+        Scanner myReader = new Scanner(file);
+        while (myReader.hasNextLine()) {
+            String tmp = myReader.nextLine();
+            int n = Integer.parseInt(tmp.split(" ")[1]);
+            int f = Integer.parseInt(tmp.split(" ")[3]);
+            int t = Integer.parseInt(tmp.split(" ")[5]);
+            move2(n, f, t);
+        }
+        myReader.close();
+        results();
     }
 
     public static void results() {

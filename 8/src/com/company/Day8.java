@@ -12,6 +12,7 @@ public class Day8 {
     public static void main(String[] args) throws FileNotFoundException {
         importData();
         System.out.println(partOne());
+        System.out.println(partTwo());
     }
 
     public static int partOne() {
@@ -26,7 +27,67 @@ public class Day8 {
     }
 
     public static int partTwo() {
-        return 0;
+        int maxScore = 0;
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (score(i,j) > maxScore)
+                    maxScore = score(i,j);
+            }
+        }
+        return maxScore;
+    }
+
+    public static int score(int n, int m) {
+        return countLeft(n, m) * countRight(n, m) * countDown(n, m) * countUp(n, m);
+    }
+
+    public static int countUp(int n, int m) {
+        if (n == 0)
+            return 0;
+        int num = 0;
+        for (int i = n - 1; i >= 0; i--) {
+            num++;
+            if (trees[i][m] >= trees[n][m])
+                return num;
+        }
+        return num;
+    }
+
+    public static int countLeft(int n, int m) {
+        if (m == 0)
+            return 0;
+        int num = 0;
+        for (int i = m - 1; i >= 0; i--) {
+            num++;
+            if (trees[n][i] >= trees[n][m])
+                return num;
+        }
+        return num;
+    }
+
+    public static int countDown(int n, int m) {
+        if (n == row - 1)
+            return 0;
+        int num = 0;
+        for (int i = n + 1; i < row; i++) {
+            num++;
+            if (trees[i][m] >= trees[n][m])
+                return num;
+        }
+        return num;
+    }
+
+    public static int countRight(int n, int m) {
+        if (m == col - 1)
+            return 0;
+        int num = 0;
+        for (int i = m + 1; i < col; i++) {
+            num++;
+            if (trees[n][i] >= trees[n][m]) {
+                return num;
+            }
+        }
+        return num;
     }
 
     public static Boolean treeVisible(int n, int m) {

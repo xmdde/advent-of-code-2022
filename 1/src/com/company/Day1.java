@@ -27,6 +27,7 @@ public class Day1 {
                 cal = 0;
             }
         }
+
         scanner.close();
         return max;
     }
@@ -49,7 +50,7 @@ public class Day1 {
                         max[1] = cal;
                         if (cal > max[0]) {
                             max[1] = max[0];
-                            max[0] = cal;
+                            max[0] = cal;   //hej
                         }
                     }
                 }
